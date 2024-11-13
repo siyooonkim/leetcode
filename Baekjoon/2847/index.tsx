@@ -3,13 +3,7 @@ let fs = require('fs');
 const input = fs.readFileSync('input.txt').toString().trim().split('\n');
 
 const N = Number(input[0]);
-const scores = [];
-
-for (let i = 1; i < input.length; i++) {
-  if (input[i] !== '') {
-    scores.push(Number(input[i]));
-  }
-}
+const scores = input.slice(1).map(Number);
 
 let count = 0;
 
