@@ -50,11 +50,13 @@ function snakesAndLadders(board: number[][]): number {
   }
 
   let visited = new Array(n * n).fill(false);
-  let queue = [];
+  let queue: [number, number][] = [];
   queue.push([0, 0]);
 
   while (queue.length > 0) {
-    let [curr, moves] = queue.shift();
+    let node: [number, number] | undefined = queue.shift();
+    if (!node) break;
+    let [curr, moves]: [number, number] | undefined = node;
 
     for (let i = 1; i <= 6; i++) {
       let target = flatArr[curr + i];
