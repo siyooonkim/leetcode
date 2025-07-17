@@ -1,33 +1,47 @@
-// 첫 번째 풀이
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
+// 공간 복잡도를 줄이기 위해서 while문 안에서 한번에 해결하는 법
+function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+  const dummyHead = new ListNode(0);
+  let current = dummyHead;
+  let carry = 0; // 올림
 
+  while (l1 || l2 || carry) {
+    let l1Val = l1 ? l1.val : 0;
+    let l2Val = l2 ? l2.val : 0;
+
+    let sum = l1Val + l2Val + carry;
+    carry = Math.floor(sum / 10);
+    current.next = new ListNode(sum % 10);
+    current = current.next;
+
+    if (l1) {
+      l1 = l1.next;
+    }
+    if (l2) {
+      l2 = l2.next;
+    }
+  }
+
+  return dummyHead.next;
+}
+
+// 첫 번째 풀이
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
   let currL1: ListNode | null = l1;
   let currL2: ListNode | null = l2;
   let share: number = 0;
   let nodeArr: number[] = [];
 
-  while (currL1 || currL2 || share) {
-    const l1Val = currL1 ? currL1.val : 0;
-    const l2Val = currL2 ? currL2.val : 0;
+  while (l1 || l2 || share) {
+    const l1Val = l1 ? l1.val : 0;
+    const l2Val = l2 ? l2.val : 0;
 
     const sum = l1Val + l2Val + share;
     const remain = sum % 10;
     nodeArr.push(remain);
     share = Math.floor(sum / 10);
 
-    currL1 = currL1 ? currL1.next : null;
-    currL2 = currL2 ? currL2.next : null;
+    l1 = l1 ? l1.next : null;
+    l2 = l2 ? l2.next : null;
   }
 
   let l3: ListNode | null = null;
