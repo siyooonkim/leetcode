@@ -14,8 +14,7 @@
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
   let currL1: ListNode | null = l1;
   let currL2: ListNode | null = l2;
-  let firstNode = true;
-  let share = 0;
+  let share: number = 0;
   let nodeArr: number[] = [];
 
   while (currL1 || currL2 || share) {
@@ -35,11 +34,7 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
 
   for (let i = nodeArr.length - 1; i >= 0; i--) {
     let newNode: ListNode | null;
-    if (i === nodeArr.length) {
-      newNode = new ListNode(nodeArr[i]);
-    } else {
-      newNode = new ListNode(nodeArr[i], l3);
-    }
+    newNode = new ListNode(nodeArr[i], l3);
     l3 = newNode;
   }
 
