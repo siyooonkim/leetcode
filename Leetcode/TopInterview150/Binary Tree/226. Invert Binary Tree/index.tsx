@@ -1,3 +1,6 @@
+// let queue: (TreeNode | null)[] = []; 의 타입 선언에 대해서
+// 섞여있는 경우는 위처럼 괄호를 통해서
+// TreeNode[] | null[] 은 배열이 TreeNode로만 가득 차 있거나 or null로만 가득 차 있다는 뜻임
 /**
  * Definition for a binary tree node.
  * class TreeNode {
@@ -15,7 +18,7 @@
 function invertTree(root: TreeNode | null): TreeNode | null {
   let tempNode: TreeNode | null;
 
-  let queue = [];
+  let queue: (TreeNode | null)[] = [];
   queue.push(root);
 
   while (queue.length) {
