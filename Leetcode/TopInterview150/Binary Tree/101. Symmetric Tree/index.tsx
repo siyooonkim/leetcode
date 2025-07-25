@@ -1,4 +1,21 @@
-// 통과는 했음
+// BFS
+// pair로 계속 left right 를 비교해나가면 되는 거였음
+function isSymmetric(root: TreeNode | null): boolean {
+  const queue: (TreeNode | null)[][] = [];
+  queue.push([root.left, root.right]);
+  while (queue.length) {
+    let [node1, node2] = queue.shift();
+    if (!node1 && !node2) continue;
+
+    if (node1 === null || node2 === null || node1.val !== node2.val) return false;
+
+    queue.push([node1.left, node2.right]);
+    queue.push([node1.right, node2.left]);
+  }
+  return true;
+}
+
+// BFS 방식? 괴상한 방식 으로 통과는 했음
 // 지나가던 사람이 봐도 코드 가독성 토나올것같음
 /**
  * Definition for a binary tree node.
