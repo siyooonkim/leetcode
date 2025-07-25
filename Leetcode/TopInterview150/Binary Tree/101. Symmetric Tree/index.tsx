@@ -1,3 +1,17 @@
+// DFS 방식 함 바볼까
+// 시간 복잡도는 O(N) 둘 다
+function isSymmetric(root: TreeNode | null): boolean {
+  function dfs(node1: TreeNode | null, node2: TreeNode | null) {
+    console.log(node1, node2);
+    if (node1 === null && node2 === null) return true;
+    if (node1 === null || node2 === null || node1.val !== node2.val) return false;
+
+    return dfs(node1.left, node2.right) && dfs(node1.right, node2.left);
+  }
+
+  if (root) return dfs(root.left, root.right);
+}
+
 // BFS
 // pair로 계속 left right 를 비교해나가면 되는 거였음
 function isSymmetric(root: TreeNode | null): boolean {
